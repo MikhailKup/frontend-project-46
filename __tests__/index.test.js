@@ -14,21 +14,20 @@ const resultPlain = readTestFile('resultplain.txt');
 const resultJson = readTestFile('resultjson.txt');
 
 describe('gendiff', () => {
-  test('gendiff for stylish', () => {
+  test('with json', () => {
     const filepath1 = getFixturesPath('file1.json');
     const filepath2 = getFixturesPath('file2.json');
+    expect(gendiff(filepath1, filepath2)).toEqual(resultStylish);
     expect(gendiff(filepath1, filepath2, 'stylish')).toEqual(resultStylish);
+	 expect(gendiff(filepath1, filepath2, 'plain')).toEqual(resultPlain);
+	 expect(gendiff(filepath1, filepath2, 'json')).toEqual(resultJson);
   });
-
-  test('gendiff for plain', () => {
-    const filepath1 = getFixturesPath('file1.json');
-    const filepath2 = getFixturesPath('file2.json');
-    expect(gendiff(filepath1, filepath2, 'plain')).toEqual(resultPlain);
-  });
-
-  test('gendiff for json', () => {
-    const filepath1 = getFixturesPath('file1.json');
-    const filepath2 = getFixturesPath('file2.json');
-    expect(gendiff(filepath1, filepath2, 'json')).toEqual(resultJson);
-  });
+  test('with yaml', () => {
+	const filepath1 = getFixturesPath('file1.yaml');
+	const filepath2 = getFixturesPath('file2.yaml');
+	expect(gendiff(filepath1, filepath2)).toEqual(resultStylish);
+	expect(gendiff(filepath1, filepath2, 'stylish')).toEqual(resultStylish);
+	expect(gendiff(filepath1, filepath2, 'plain')).toEqual(resultPlain);
+	expect(gendiff(filepath1, filepath2, 'json')).toEqual(resultJson);
+ });
 });

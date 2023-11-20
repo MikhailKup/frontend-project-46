@@ -2,7 +2,7 @@ import formateToStylish from './stylish.js';
 import formateToPlain from './plain.js';
 import formateToJson from './json.js';
 
-const choiceFormat = (data, format) => {
+const formatData = (data, format) => {
   switch (format) {
     case 'stylish':
       return formateToStylish(data);
@@ -14,4 +14,4 @@ const choiceFormat = (data, format) => {
       throw new Error(`Unknown ${format}.`);
   }
 };
-export default choiceFormat;
+export default formatData;

@@ -1,4 +1,5 @@
 import yaml from 'js-yaml';
+import { getFileFormat } from './helpers.js';
 
 const parsers = {
   json: JSON.parse,
@@ -6,12 +7,11 @@ const parsers = {
   yml: yaml.load,
 };
 
-const getParsedFile = (data, format) => {
+const parse = (data, format) => {
   if (!parsers[format]) {
-    throw new Error('unknow file format');
+    throw new Error(`${format} is the wrong format`);
   }
-  const outputObject = parsers[format](data);
-  return outputObject;
+  return parsers[format](data);
 };
 
-export default getParsedFile;
+export default parse;

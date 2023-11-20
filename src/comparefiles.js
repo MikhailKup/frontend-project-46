@@ -1,19 +1,12 @@
 import _ from 'lodash';
 
-const getSortedKeys = (obj1, obj2) => {
-  const keys1 = _.keys(obj1);
-  const keys2 = _.keys(obj2);
-  const unionKeys = _.union(keys1, keys2);
-  const sortedKeys = _.sortBy(unionKeys);
-  return sortedKeys;
-};
-
-const compareFiles = (data1, data2) => {
-  const keys = getSortedKeys(data1, data2);
-  const conditions = keys.map((key) => {
+const compareData = (data1, data2) => {
+	const unionKeys = _.union(_.keys(data1), _.keys(data2));
+  const keys = _.sortBy(unionKeys);
+  return keys.map((key) => {
     const value1 = data1[key];
     const value2 = data2[key];
-    if (_.has(data1, key) && !_.has(data2, key)) {
+    if (!_.has(data2, key)) {
       const result = { key, value1, status: 'removed' };
       return result;
     }
@@ -24,7 +17,7 @@ const compareFiles = (data1, data2) => {
     if (_.isObject(value1) && _.isObject(value2)) {
       const result = {
         key,
-        children: compareFiles(value1, value2),
+        children: compareData(value1, value2),
         status: 'nested',
       };
       return result;
@@ -40,7 +33,6 @@ const compareFiles = (data1, data2) => {
       status: 'changed',
     };
   });
-  return conditions;
 };
 
-export default compareFiles;
+export default compareData;

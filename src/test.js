@@ -1,14 +1,16 @@
-import fs from 'fs';
-import path from 'path';
 import _ from 'lodash';
 
-// Получение абсолютного пути
-const getAbsolutPath = (filePath) => path.resolve(process.cwd(), filePath);
+const data1 = {
+  host: 'hexlet.io',
+  timeout: 50,
+  proxy: '123.234.53.22',
+  follow: false,
+};
 
-// Чтение файла и парсинг
-const readFile = (filePath) => {
-  const data = fs.readFileSync(getAbsolutPath(filePath), 'utf-8');
-  return JSON.parse(data);
+const data2 = {
+  timeout: 20,
+  verbose: true,
+  host: 'hexlet.io',
 };
 
 const compareObjects = (data1, data2) => {
@@ -40,11 +42,4 @@ const compareObjects = (data1, data2) => {
   }
   return JSON.stringify(result);
 };
-
-const gendiff = (filePath1, filePath2) => {
-  const data1 = readFile(filePath1);
-  const data2 = readFile(filePath2);
-  const result = compareObjects(data1, data2);
-  return result;
-};
-export default gendiff;
+console.log(compareObjects(data1, data2));

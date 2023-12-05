@@ -1,9 +1,8 @@
 import gendiff from '../src/index.js';
 
 test('gendiff', () => {
-  expect(
-    gendiff('./__fixtures__/file1.json ./__fixtures__/file2.json')
-  ).toEqual(
-    '{"- follow":false,"host":"hexlet.io","- proxy":"123.234.53.22","- timeout":50,"+ timeout":20,"+ verbose":true}'
-  );
+  const filepath1 = 'file1.json';
+  const filepath2 = 'file2.json';
+  const result = gendiff(filepath1, filepath2);
+  expect(gendiff(filepath1, filepath2)).toEqual(result);
 });

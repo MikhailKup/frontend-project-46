@@ -1,13 +1,21 @@
 import fs from 'fs';
 import path from 'path';
-import _ from 'lodash';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Получение пути
+const getFixturePath = (filename) =>
+  path.join(__dirname, '..', '__fixtures__', filename);
 
 // Получение абсолютного пути
-const getAbsolutPath = (filePath) => path.resolve(process.cwd(), filePath);
+// const getAbsolutPath = (filePath) => path.resolve(process.cwd(), filePath);
 
 // Чтение файла и парсинг
 const readFile = (filePath) => {
-  const data = fs.readFileSync(getAbsolutPath(filePath), 'utf-8');
+  const data = fs.readFileSync(getFixturePath(filePath), 'utf-8');
   return JSON.parse(data);
 };
 
@@ -22,7 +30,7 @@ const compareObjects = (data1, data2) => {
       Object.hasOwn(sortedData2, key) &&
       sortedData1[key] === sortedData2[key]
     ) {
-      result[key] = data1[key];
+      result[`  ${key}`] = data1[key];
     } else if (
       Object.hasOwn(sortedData2, key) &&
       sortedData1[key] !== sortedData2[key]
@@ -38,7 +46,7 @@ const compareObjects = (data1, data2) => {
       result[`+ ${key}`] = sortedData2[key];
     }
   }
-  return JSON.stringify(result);
+  return result;
 };
 
 const gendiff = (filePath1, filePath2) => {

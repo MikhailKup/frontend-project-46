@@ -1,23 +1,4 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-// Получение пути
-const getFixturePath = (filename) =>
-  path.join(__dirname, '..', '__fixtures__', filename);
-
-// Получение абсолютного пути
-// const getAbsolutPath = (filePath) => path.resolve(process.cwd(), filePath);
-
-// Чтение файла и парсинг
-const readFile = (filePath) => {
-  const data = fs.readFileSync(getFixturePath(filePath), 'utf-8');
-  return JSON.parse(data);
-};
+import { readFile } from './tools.js';
 
 const compareObjects = (data1, data2) => {
   const result = {};
@@ -46,7 +27,12 @@ const compareObjects = (data1, data2) => {
       result[`+ ${key}`] = sortedData2[key];
     }
   }
-  return result;
+  let resultArr = ['{'];
+  for (const key in result) {
+    resultArr.push(key + ':' + result[key]);
+  }
+  resultArr.push('}');
+  return resultArr.join('\n');
 };
 
 const gendiff = (filePath1, filePath2) => {
@@ -56,3 +42,5 @@ const gendiff = (filePath1, filePath2) => {
   return result;
 };
 export default gendiff;
+
+console.log(gendiff('file1.yml', 'file2.yml'));

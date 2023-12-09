@@ -5,6 +5,9 @@ env:
   node: true
   jest: true
 
+rules:
+linebreak-style: 0
+
 extends:
   - airbnb-base
   - 'plugin:jest/recommended'

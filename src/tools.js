@@ -1,23 +1,19 @@
-import fs from 'fs';
+import { readFileSync } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import getParsedObject from './parse.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Получение пути
-const getFixturePath = (filename) =>
-  path.join(__dirname, '..', '__fixtures__', filename);
+const getFilePath = (filePath) =>
+  path.join(__dirname, '..', '__fixtures__', filePath);
 
 // Получение формата
 const getFileFormat = (filePath) => path.extname(filePath).slice(1);
 
-// Чтение файла и парсинг
-const readFile = (filePath) => {
-  const data = fs.readFileSync(getFixturePath(filePath), 'utf-8');
-  return getParsedObject(data, getFileFormat(filePath));
-};
+// Чтение файла
+const readFile = (filePath) => readFileSync(filePath, 'utf-8');
 
-export { readFile, getFixturePath, getFileFormat };
+export { readFile, getFilePath, getFileFormat };

@@ -6,7 +6,7 @@ const parsers = {
   yml: yaml.load,
 };
 
-const getParsedObject = (data, format) => {
+const getParsedFile = (data, format) => {
   if (!parsers[format]) {
     throw new Error('unknow file format');
   }
@@ -14,4 +14,4 @@ const getParsedObject = (data, format) => {
   return outputObject;
 };
 
-export default getParsedObject;
+export default getParsedFile;

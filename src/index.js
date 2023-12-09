@@ -1,46 +1,22 @@
-import { readFile } from './tools.js';
+import { readFile, getFilePath, getFileFormat } from './tools.js';
+import compareFiles from './comparefiles.js';
+import getParsedFile from './parse.js';
+import choiceFormat from './formatters/index.js';
 
-const compareObjects = (data1, data2) => {
-  const result = {};
-  const sortedData1 = Object.fromEntries(Object.entries(data1).sort());
-  const sortedData2 = Object.fromEntries(Object.entries(data2).sort());
-  const keys = Object.keys(sortedData1);
-  const keys2 = Object.keys(sortedData2);
-  for (let key of keys) {
-    if (
-      Object.hasOwn(sortedData2, key) &&
-      sortedData1[key] === sortedData2[key]
-    ) {
-      result[`  ${key}`] = data1[key];
-    } else if (
-      Object.hasOwn(sortedData2, key) &&
-      sortedData1[key] !== sortedData2[key]
-    ) {
-      result[`- ${key}`] = sortedData1[key];
-      result[`+ ${key}`] = sortedData2[key];
-    } else if (!Object.hasOwn(sortedData2, key)) {
-      result[`- ${key}`] = sortedData1[key];
-    }
-  }
-  for (let key of keys2) {
-    if (!Object.hasOwn(sortedData1, key)) {
-      result[`+ ${key}`] = sortedData2[key];
-    }
-  }
-  let resultArr = ['{'];
-  for (const key in result) {
-    resultArr.push(key + ':' + result[key]);
-  }
-  resultArr.push('}');
-  return resultArr.join('\n');
-};
+const gendiff = (filePath1, filePath2, format = 'stylish') => {
+  const ext1 = getFileFormat(filePath1);
+  const path1 = getFilePath(filePath1);
+  const data1 = readFile(path1);
 
-const gendiff = (filePath1, filePath2) => {
-  const data1 = readFile(filePath1);
-  const data2 = readFile(filePath2);
-  const result = compareObjects(data1, data2);
-  return result;
+  const ext2 = getFileFormat(filePath2);
+  const path2 = getFilePath(filePath2);
+  const data2 = readFile(path2);
+
+  const parseData1 = getParsedFile(data1, ext1);
+  const parseData2 = getParsedFile(data2, ext2);
+  const diff = compareFiles(parseData1, parseData2);
+  return choiceFormat(diff, format);
 };
 export default gendiff;
 
-console.log(gendiff('file1.yml', 'file2.yml'));
+console.log(gendiff('file1.json', 'file2.json', 'plain'));

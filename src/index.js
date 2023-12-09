@@ -18,5 +18,3 @@ const gendiff = (filePath1, filePath2, format = 'stylish') => {
   return choiceFormat(diff, format);
 };
 export default gendiff;
-
-console.log(gendiff('file1.json', 'file2.json', 'plain'));

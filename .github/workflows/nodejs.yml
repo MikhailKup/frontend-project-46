@@ -1,10 +1,7 @@
-# Name of workflow
 name: Node CI
 
-# Trigger the workflow on push or pull request
 on:
   - push
-  - pull_request
 
 env:
   CI: true
@@ -16,19 +13,17 @@ jobs:
       matrix:
         node-version: [16.x]
     steps:
-      - uses: actions/checkout@v2
+      - name: Get code
+        uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
-        # The Node.js version to configure
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - run: npm install
+      - run: npm i
       - run: make lint
-      - run: make test
       - name: Test & publish code coverage
-        uses: paambaati/codeclimate-action@v3.0.0
-        # Add Code Climate secret key
+        uses: paambaati/codeclimate-action@v2.7.4
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:

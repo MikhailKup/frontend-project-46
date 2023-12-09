@@ -1,24 +1,26 @@
 {
-  "name": "@hexlet/code",
-  "version": "1.0.0",
-  "type": "module",
-  "description": "[![Actions Status](https://github.com/MikhailKup/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/MikhailKup/frontend-project-46/actions)",
-  "main": "src/index.js",
-  "bin": {
-    "gendiff": "bin/gendiff.js"
-  },
-  "scripts": {
-    "test": "npx jest"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "commander": "^11.1.0",
-    "jest": "^29.7.0",
-    "js-yaml": "^4.1.0",
-    "lodash": "^4.17.21"
-  },
-  "devDependencies": {
-    "eslint": "^8.55.0"
-  }
-}
+	"name": "@hexlet/code",
+	"version": "1.0.0",
+	"type": "module",
+	"description": "difference calculator",
+	"main": "src/index.js",
+	"bin": {
+	  "gendiff": "bin/gendiff.js"
+	},
+	"scripts": {
+	  "test": "npx jest"
+	},
+	"author": "MikhailKup",
+	"license": "ISC",
+	"dependencies": {
+	  "commander": "^11.1.0",
+	  "js-yaml": "^4.1.0",
+	  "lodash": "^4.17.21"
+	},
+	"devDependencies": {
+	  "eslint": "^8.55.0",
+	  "eslint-plugin-jest": "^27.6.0",
+	  "jest": "^29.7.0",
+	  "jest-cli": "^29.7.0"
+	}
+ }

@@ -45,46 +45,38 @@ npm link
 gendiff -h
 ```
 
-> ![Running gendiff -h](/demo/Picture1.jpg)
+> ![Running gendiff -h](/demo/Picture1.png)
 
 ### Examples of work:
 
-1. An example of working with flat JSON files:
-
-```
-gendiff flatFile1.json flatFile2.json
-```
-
-> ![Running gendiff flatFile1.json flatFile2.json](/demo/Picture2.jpg)
-
-2. An example of working with flat YAML, YML files:
+1. An example of working with flat YAML, YML files:
 
 ```
 gendiff file1.yml file2.yml
 ```
 
-> ![Running gendiff file1.yml file2.yml](/demo/Picture3.jpg)
+> ![Running gendiff file1.yml file2.yml](/demo/Picture3.png)
 
-3. An example of working with nested objects:
+2. An example of working with nested objects:
 
 ```
 gendiff file1.json file2.json
 ```
 
-> ![Running gendiff file1.json file2.json](/demo/Picture4.jpg)
+> ![Running gendiff file1.json file2.json](/demo/Picture4.png)
 
-4. An example of how the Plain format works:
+3. An example of how the Plain format works:
 
 ```
 gendiff -f plain file1.json file2.json
 ```
 
-> ![Running gendiff -f plain file1.json file2.json](/demo/Picture5.jpg)
+> ![Running gendiff -f plain file1.json file2.json](/demo/Picture5.png)
 
-5. An example of how the JSON format works:
+4. An example of how the JSON format works:
 
 ```
 gendiff -f json file1.json file2.json
 ```
 
-> ![Running gendiff -f json file1.json file2.json](/demo/Picture6.jpg)
+> ![Running gendiff -f json file1.json file2.json](/demo/Picture6.png)

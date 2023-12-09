@@ -28,26 +28,25 @@ const getValue = (value) => {
 
 const formateToPlain = (data) => {
   const iter = (value, path) => {
-    const result = value.flatMap((elem) => {
-      const { key, children, status, value1, value2 } = elem;
-      const fullPath = path === '' ? `${key}` : `${path}.${key}`;
-      switch (status) {
+    const result = value.flatMap((node) => {
+      const fullPath = path === '' ? `${node.key}` : `${path}.${node.key}`;
+      switch (node.status) {
         case 'nested':
-          return iter(children, fullPath);
+          return iter(node.children, fullPath);
         case 'removed':
           return `Property '${fullPath}' was removed`;
         case 'added':
           return `Property '${fullPath}' was added with value: ${getValue(
-            value2
+            node.value2,
           )}`;
         case 'changed':
           return `Property '${fullPath}' was updated. From ${getValue(
-            value1
-          )} to ${getValue(value2)}`;
+            node.value1,
+          )} to ${getValue(node.value2)}`;
         case 'unchanged':
           return [];
         default:
-          throw new Error(`Unknown type: ${status}`);
+          throw new Error(`Unknown type: ${node.status}`);
       }
     });
     return [...result].join('\n');

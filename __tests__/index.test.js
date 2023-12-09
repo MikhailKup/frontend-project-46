@@ -1,5 +1,4 @@
 import gendiff from '../src/index.js';
-import { readFile } from '../src/tools.js';
 
 test('gendiff for stylish', () => {
   const filepath1 = 'file1.json';
@@ -20,4 +19,11 @@ test('gendiff for plain', () => {
   const filepath2 = 'file2.json';
   const result = gendiff(filepath1, filepath2, 'plain');
   expect(gendiff(filepath1, filepath2, 'plain')).toEqual(result);
+});
+
+test('gendiff for json', () => {
+  const filepath1 = 'file1.json';
+  const filepath2 = 'file2.json';
+  const result = gendiff(filepath1, filepath2, 'json');
+  expect(gendiff(filepath1, filepath2, 'json')).toEqual(result);
 });

@@ -26,7 +26,11 @@ const formateToStylish = (data) => {
     const currentIndent = getIdent(depth);
     const bracketIndent = getBrackeIndent(depth);
     const lines = currentValue.flatMap((elem) => {
-      const { key, children, status, value1, value2 } = elem;
+      const { key, 
+			children, 
+			status, 
+			value1, 
+			value2 } = elem;
       switch (status) {
         case 'nested':
           return `${currentIndent}  ${key}: ${iter(children, depth + 1)}`;

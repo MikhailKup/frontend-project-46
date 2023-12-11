@@ -29,7 +29,11 @@ const getValue = (value) => {
 const formateToPlain = (data) => {
   const iter = (value, path) => {
     const result = value.flatMap((elem) => {
-      const { key, children, status, value1, value2 } = elem;
+      const { key, 
+		children, 
+		status, 
+		value1, 
+		value2 } = elem;
       const fullPath = path === '' ? `${key}` : `${path}.${key}`;
       switch (status) {
         case 'nested':
@@ -38,11 +42,11 @@ const formateToPlain = (data) => {
           return `Property '${fullPath}' was removed`;
         case 'added':
           return `Property '${fullPath}' was added with value: ${getValue(
-            value2
+            value2,
           )}`;
         case 'changed':
           return `Property '${fullPath}' was updated. From ${getValue(
-            value1
+            value1,
           )} to ${getValue(value2)}`;
         case 'unchanged':
           return [];

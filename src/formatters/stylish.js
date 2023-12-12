@@ -15,7 +15,8 @@ const stringify = (data, depth = 1) => {
   const bracketIndent = getBrackeIndent(depth);
   const currentValue = Object.entries(data);
   const lines = currentValue.map(
-    ([key, value]) => `${currentIndent}  ${key}: ${stringify(value, depth + 1)}`
+    ([key, value]) =>
+      `${currentIndent}  ${key}: ${stringify(value, depth + 1)}`,
   );
   const result = ['{', ...lines, `${bracketIndent}}`].join('\n');
   return result;
@@ -25,28 +26,41 @@ const formateToStylish = (data) => {
   const iter = (currentValue, depth = 1) => {
     const currentIndent = getIdent(depth);
     const bracketIndent = getBrackeIndent(depth);
-    const lines = currentValue.flatMap((elem) => {
-      const { key, 
-			children, 
-			status, 
-			value1, 
-			value2 } = elem;
-      switch (status) {
+    const lines = currentValue.flatMap((node) => {
+      switch (node.status) {
         case 'nested':
-          return `${currentIndent}  ${key}: ${iter(children, depth + 1)}`;
+          return `${currentIndent}  ${node.key}: ${iter(
+            node.children,
+            depth + 1,
+          )}`;
         case 'removed':
-          return `${currentIndent}- ${key}: ${stringify(value1, depth + 1)}`;
+          return `${currentIndent}- ${node.key}: ${stringify(
+            node.value1,
+            depth + 1,
+          )}`;
         case 'added':
-          return `${currentIndent}+ ${key}: ${stringify(value2, depth + 1)}`;
+          return `${currentIndent}+ ${node.key}: ${stringify(
+            node.value2,
+            depth + 1,
+          )}`;
         case 'unchanged':
-          return `${currentIndent}  ${key}: ${stringify(value1, depth + 1)}`;
+          return `${currentIndent}  ${node.key}: ${stringify(
+            node.value1,
+            depth + 1,
+          )}`;
         case 'changed':
           return [
-            `${currentIndent}- ${key}: ${stringify(value1, depth + 1)}`,
-            `${currentIndent}+ ${key}: ${stringify(value2, depth + 1)}`,
+            `${currentIndent}- ${node.key}: ${stringify(
+              node.value1,
+              depth + 1,
+            )}`,
+            `${currentIndent}+ ${node.key}: ${stringify(
+              node.value2,
+              depth + 1,
+            )}`,
           ];
         default:
-          throw new Error(`Unknown type ${status}.`);
+          throw new Error(`Unknown type ${node.status}.`);
       }
     });
     return ['{', ...lines, `${bracketIndent}}`].join('\n');

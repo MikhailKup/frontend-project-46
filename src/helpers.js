@@ -17,4 +17,4 @@ const readFile = (filePath) => {
   return getParsedFile(data, dataType);
 };
 
-export {readFile, getFilePath, getFileFormat};
+export {readFile, getFilePath};

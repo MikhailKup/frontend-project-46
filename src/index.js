@@ -1,6 +1,5 @@
-// import {readFile, getFilePath, getFileFormat} from './helpers.js';
-// import getParsedFile from './parse.js';
 import {readFile, getFilePath} from './helpers.js';
+// import getParsedFile from './parse.js';
 import compareFiles from './comparefiles.js';
 import choiceFormat from './formatters/index.js';
 
@@ -19,12 +18,19 @@ import choiceFormat from './formatters/index.js';
 //   return choiceFormat(diff, format);
 // };
 
-const gendiff = (filePath1, filePath2, format = 'stylish') => {
-  const path1 = getFilePath(filePath1);
-  const path2 = getFilePath(filePath2);
+// const gendiff = (filePath1, filePath2, format = 'stylish') => {
+//   const path1 = getFilePath(filePath1);
+//   const path2 = getFilePath(filePath2);
 
-  const parseData1 = readFile(path1);
-  const parseData2 = readFile(path2);
+//   const parseData1 = readFile(path1);
+//   const parseData2 = readFile(path2);
+//   const diff = compareFiles(parseData1, parseData2);
+//   return choiceFormat(diff, format);
+// };
+
+const gendiff = (filePath1, filePath2, format = 'stylish') => {
+  const parseData1 = readFile(filePath1);
+  const parseData2 = readFile(filePath2);
   const diff = compareFiles(parseData1, parseData2);
   return choiceFormat(diff, format);
 };

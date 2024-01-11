@@ -1,15 +1,15 @@
 import gendiff from '../src/index.js';
 import {readFileSync} from 'fs';
-// import {readFile} from '../src/helpers.js';
 import {fileURLToPath} from 'url';
-import {dirname} from 'path';
+import path, {dirname} from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const getFixturesPath = (filePath) =>
   path.join(__dirname, '..', '__fixtures__', filePath);
 
-const readTestFile = (filePath) => readFileSync(filePath, 'utf-8');
+const readTestFile = (filePath) =>
+  readFileSync(getFixturesPath(filePath), 'utf-8');
 
 const resultStylish = readTestFile('resultstylish.txt');
 const resultPlain = readTestFile('resultplain.txt');

@@ -1,10 +1,8 @@
 import _ from 'lodash';
 
-const getIdent = (depth, replacer = ' ', spacesCount = 4) =>
-  replacer.repeat(depth * spacesCount - 2);
+const getIdent = (depth, replacer = ' ', spacesCount = 4) => replacer.repeat(depth * spacesCount - 2);
 
-const getBrackeIndent = (depth, replacer = ' ', spacesCount = 4) =>
-  replacer.repeat(depth * spacesCount - spacesCount);
+const getBrackeIndent = (depth, replacer = ' ', spacesCount = 4) => replacer.repeat(depth * spacesCount - spacesCount);
 
 const stringify = (data, depth = 1) => {
   if (!_.isPlainObject(data)) {
@@ -15,8 +13,7 @@ const stringify = (data, depth = 1) => {
   const bracketIndent = getBrackeIndent(depth);
   const currentValue = Object.entries(data);
   const lines = currentValue.map(
-    ([key, value]) =>
-      `${currentIndent}  ${key}: ${stringify(value, depth + 1)}`,
+    ([key, value]) => `${currentIndent}  ${key}: ${stringify(value, depth + 1)}`,
   );
   const result = ['{', ...lines, `${bracketIndent}}`].join('\n');
   return result;

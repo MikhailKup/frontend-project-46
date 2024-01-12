@@ -1,4 +1,4 @@
-import {readFile, getFilePath, getFileFormat} from './helpers.js';
+import { readFile, getFilePath, getFileFormat } from './helpers.js';
 import compareFiles from './comparefiles.js';
 import choiceFormat from './formatters/index.js';
 import getParsedFile from './parse.js';

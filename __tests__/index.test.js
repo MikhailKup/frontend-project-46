@@ -35,6 +35,7 @@ describe('gendiff', () => {
   });
 });
 
+// Last files
 // test('gendiff for stylish', () => {
 //   const filepath1 = getFixturesPath('file1.json');
 //   const filepath2 = getFixturesPath('file2.json');

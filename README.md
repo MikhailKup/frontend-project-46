@@ -52,7 +52,7 @@ gendiff -h
 1. An example of working with flat YAML, YML files:
 
 ```
-gendiff file1.yml file2.yml
+gendiff __fixtures__/file1.yml __fixtures__/file2.yml
 ```
 
 > ![Running gendiff file1.yml file2.yml](/demo/Picture3.png)
@@ -60,7 +60,7 @@ gendiff file1.yml file2.yml
 2. An example of working with nested objects:
 
 ```
-gendiff file1.json file2.json
+gendiff __fixtures__/file1.json __fixtures__/file2.json
 ```
 
 > ![Running gendiff file1.json file2.json](/demo/Picture4.png)
@@ -68,7 +68,7 @@ gendiff file1.json file2.json
 3. An example of how the Plain format works:
 
 ```
-gendiff -f plain file1.json file2.json
+gendiff -f plain __fixtures__/file1.json __fixtures__/file2.json
 ```
 
 > ![Running gendiff -f plain file1.json file2.json](/demo/Picture5.png)
@@ -76,7 +76,7 @@ gendiff -f plain file1.json file2.json
 4. An example of how the JSON format works:
 
 ```
-gendiff -f json file1.json file2.json
+gendiff -f json __fixtures__/file1.json __fixtures__/file2.json
 ```
 
 > ![Running gendiff -f json file1.json file2.json](/demo/Picture6.png)

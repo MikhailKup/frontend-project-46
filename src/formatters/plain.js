@@ -1,23 +1,4 @@
 import _ from 'lodash';
-// import compareFiles from '../comparefiles.js';
-// import getParsedFile from '../parse.js';
-// import choiceFormat from './index.js';
-// import { readFile, getFilePath, getFileFormat } from '../tools.js';
-
-// //?======================================================================
-// const ext1 = getFileFormat('file1.json');
-// const path1 = getFilePath('file1.json');
-// const data1 = readFile(path1);
-
-// const ext2 = getFileFormat('file2.json');
-// const path2 = getFilePath('file2.json');
-// const data2 = readFile(path2);
-
-// const parseData1 = getParsedFile(data1, ext1);
-// const parseData2 = getParsedFile(data2, ext2);
-// const diff = compareFiles(parseData1, parseData2);
-
-// //?======================================================================
 
 const getValue = (value) => {
   if (typeof value === 'string') {
@@ -37,7 +18,7 @@ const formateToPlain = (data) => {
           return `Property '${fullPath}' was removed`;
         case 'added':
           return `Property '${fullPath}' was added with value: ${getValue(
-            node.value2,
+            node.value,
           )}`;
         case 'changed':
           return `Property '${fullPath}' was updated. From ${getValue(
@@ -55,5 +36,3 @@ const formateToPlain = (data) => {
 };
 
 export default formateToPlain;
-
-// console.log(choiceFormat(diff, 'plain'));

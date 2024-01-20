@@ -32,12 +32,12 @@ const formateToStylish = (data) => {
           )}`;
         case 'removed':
           return `${currentIndent}- ${node.key}: ${stringify(
-            node.value1,
+            node.value,
             depth + 1,
           )}`;
         case 'added':
           return `${currentIndent}+ ${node.key}: ${stringify(
-            node.value2,
+            node.value,
             depth + 1,
           )}`;
         case 'unchanged':

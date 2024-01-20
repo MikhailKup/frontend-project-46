@@ -1,5 +1,5 @@
-import { getFilePath, getFileFormat } from './helpers.js';
 import { readFileSync } from 'fs';
+import { getFilePath, getFileFormat } from './helpers.js';
 import compareData from './comparefiles.js';
 import formatData from './formatters/index.js';
 import parse from './parse.js';

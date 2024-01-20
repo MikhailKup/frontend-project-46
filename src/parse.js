@@ -1,5 +1,4 @@
 import yaml from 'js-yaml';
-import { getFileFormat } from './helpers.js';
 
 const parsers = {
   json: JSON.parse,

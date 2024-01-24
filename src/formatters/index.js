@@ -1,15 +1,15 @@
-import formateToStylish from './stylish.js';
-import formateToPlain from './plain.js';
-import formateToJson from './json.js';
+import formatToStylish from './stylish.js';
+import formatToPlain from './plain.js';
+import formatToJson from './json.js';
 
 const formatData = (data, format) => {
   switch (format) {
     case 'stylish':
-      return formateToStylish(data);
+      return formatToStylish(data);
     case 'plain':
-      return formateToPlain(data);
+      return formatToPlain(data);
     case 'json':
-      return formateToJson(data);
+      return formatToJson(data);
     default:
       throw new Error(`Unknown ${format}.`);
   }
